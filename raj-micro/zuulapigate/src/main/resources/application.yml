@@ -1,0 +1,26 @@
+spring:
+application:
+    name: zuulapigate
+server:
+  port: 8762
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:9090/eureka/
+  instance:
+    hostname: localhost
+
+zuul:
+   prefix:/api
+routes:
+  dbclient:
+    path:/dbclient/**
+    url:http://localhost:8301
+ 
+  stock-service:
+    path:/stock-service/**
+    url:http://localhost:8302
+  
